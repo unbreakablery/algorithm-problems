@@ -11,5 +11,6 @@ Please open ***html*** files and then you can review the [problems and results](
 ### [Unique Substring](http://algorithm-problems.vercel.app/unique_substring.html)
 ### [Reduce Calling](http://algorithm-problems.vercel.app/reduce_calling.html)
 ### [Drain out of pot](http://algorithm-problems.vercel.app/drain.html)
+### [Fix chat app](http://algorithm-problems.vercel.app/chat_app.html)
 
 **Please try to challenge to these problems with your clever brain.**
