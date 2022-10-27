@@ -1,6 +1,6 @@
 # Algorithm Problems
 
-Here are lots of some algorithm problems for software developers.
+Here are lots of algorithm problems for software developers.
 
 Please open ***html*** files and then you can review the [problems and results](http://algorithm-problems.vercel.app/).
 
