@@ -12,5 +12,6 @@ Please open ***html*** files and then you can review the [problems and results](
 ### [Reduce Calling](http://algorithm-problems.vercel.app/reduce_calling.html)
 ### [Drain out of pot](http://algorithm-problems.vercel.app/drain.html)
 ### [Fix chat app](http://algorithm-problems.vercel.app/chat_app.html)
+### [Least Occurrence](http://algorithm-problems.vercel.app/least_occurrence.html)
 
 **Please try to challenge to these problems with your clever brain.**
