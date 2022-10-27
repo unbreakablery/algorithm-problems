@@ -8,11 +8,11 @@
 
 <body>
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="index.html">Algorithm Problems</a>
+    <a class="navbar-brand" href="../index.html">Algorithm Problems</a>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="index.html">Back</a>
+          <a class="nav-link" href="../index.html">Back</a>
         </li>
       </ul>
     </div>
@@ -44,10 +44,60 @@
         <label for="" class="form-label text-primary fw-bold">Result:</label>
         <p id="result"></p>
       </div>
+
+      <button type="button" class="btn btn-success" id="showCodeBtn">Show Solution</button>
+      <div class="py-4">
+        <pre class="line-numbers bg-dark text-white">
+          <code class="language-javascript d-none" id="resultCode">
+            const solution = (s) => {
+              let len = 0, startPos = 0, index = [];
+              for (let i = 0; i < 256; i++) {
+                index.push(-1);
+              }
+              for (let i = 0; i < s.length; i++) {
+                const idx = index[s.charCodeAt(i)];
+                index[s.charCodeAt(i)] = i;
+                if (idx > -1) {
+                  startPos = startPos < idx + 1 ? idx + 1: startPos;
+                }
+                len = len < i - startPos + 1 ? i - startPos + 1 : len;
+              }
+              return len;
+            }
+          
+            const solution2 = (s) => {
+              let res = 0
+              let pos = [];
+              for(let i = 0; i < 256; i++) {
+                pos[i] = 0;
+              }
+              let count = 0;
+              for(let i = 0; i < s.length; i++){
+                let j;
+                for(j = i; j < s.length; j++){
+                  pos[s.charCodeAt(j)]++;
+                  if(pos[s.charCodeAt(j)] === 2){
+                    break;
+                  }
+                
+                }
+                if(count < j - i){
+                  count = j - i;
+                }
+                for(let i = 0; i < 256; i++){
+                  pos[i] = 0;
+                }
+              }
+              
+              return count;
+            }
+          </code>
+        </pre>
+      </div>
     </form>
 
     <p class="text-success">Note: Python Code</p>
-    <img class="mb-4 pb-4" src="./assets/img/unique_substring_python_code.png" height="50%" alt="" />
+    <img class="mb-4 pb-4" src="../assets/img/unique_substring_python_code.png" height="50%" alt="" />
   </div>
   <footer class="bg-dark text-center text-lg-start text-white fixed-bottom">
     <!-- Copyright -->
@@ -115,6 +165,10 @@
     }
 
     $('#result').text(solution(input));
+  });
+
+  $('#showCodeBtn').on('click', function() {
+    $('#resultCode').hasClass('d-none') ? $('#resultCode').removeClass('d-none') : $('#resultCode').addClass('d-none');
   });
 </script>
 

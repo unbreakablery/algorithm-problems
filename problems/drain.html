@@ -8,11 +8,11 @@
 
 <body>
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="index.html">Algorithm Problems</a>
+    <a class="navbar-brand" href="../index.html">Algorithm Problems</a>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="index.html">Back</a>
+          <a class="nav-link" href="../index.html">Back</a>
         </li>
       </ul>
     </div>
@@ -109,6 +109,58 @@
         <label for="" class="form-label text-primary fw-bold">Result:</label>
         <p id="result"></p>
       </div>
+
+      <button type="button" class="btn btn-success" id="showCodeBtn">Show Solution</button>
+      <div class="py-4">
+        <pre class="line-numbers bg-dark text-white">
+          <code class="language-javascript d-none" id="resultCode">
+            const solution = (pot) => {
+              const rows = pot.length;
+              const cols = pot[0].length;
+              for (let j = 0; j < cols; j++) {
+                if (pot[0][j] < 1) {
+                  pot[0][j] = 1;
+                  let count = 1, pos = [{ row: 0, col: j }];
+                  while (count) {
+                    console.log(pos);
+                    const newPos = [];
+                    for (let i = 0; i < count; i++) {
+                      if (pos[i].row == rows - 1) return true;
+                      if (pos[i].row < rows - 1) {
+                        if (pot[pos[i].row + 1][pos[i].col] == 0) {
+                          newPos.push({ row: pos[i].row + 1, col: pos[i].col });
+                          pot[pos[i].row + 1][pos[i].col] = 1;
+                        }
+                      };
+                      if (pos[i].row > 0) {
+                        if (pot[pos[i].row - 1][pos[i].col] == 0) {
+                          newPos.push({ row: pos[i].row - 1, col: pos[i].col });
+                          pot[pos[i].row - 1][pos[i].col] = 1;
+                        }
+                      };
+                      if (pos[i].col < cols - 1) {
+                        if (pot[pos[i].row][pos[i].col + 1] == 0) {
+                          newPos.push({ row: pos[i].row, col: pos[i].col + 1 });
+                          pot[pos[i].row][pos[i].col + 1] = 1
+                        }
+                      }
+                      if (pos[i].col > 0) {
+                        if (pot[pos[i].row][pos[i].col - 1] == 0) {
+                          newPos.push({ row: pos[i].row, col: pos[i].col - 1 });
+                          pot[pos[i].row][pos[i].col - 1] = 1;
+                        }
+                      }
+                    }
+                    pos = newPos;
+                    count = pos.length;
+                  }
+                }
+              }
+              return false;
+            }
+          </code>
+        </pre>
+      </div>
     </form>
   </div>
   <footer class="bg-dark text-center text-lg-start text-white fixed-bottom">
@@ -181,6 +233,10 @@
     const pot = eval("[" + input + "]");
     
     $('#result').text(solution(pot));
+  });
+
+  $('#showCodeBtn').on('click', function() {
+    $('#resultCode').hasClass('d-none') ? $('#resultCode').removeClass('d-none') : $('#resultCode').addClass('d-none');
   });
 </script>
 

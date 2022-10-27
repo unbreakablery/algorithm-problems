@@ -8,11 +8,11 @@
 
 <body>
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="index.html">Algorithm Problems</a>
+    <a class="navbar-brand" href="../index.html">Algorithm Problems</a>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="index.html">Back</a>
+          <a class="nav-link" href="../index.html">Back</a>
         </li>
       </ul>
     </div>
@@ -79,6 +79,15 @@
         <label for="" class="form-label text-primary fw-bold">Result:</label>
         <p id="result"></p>
       </div>
+
+      <button type="button" class="btn btn-success" id="showCodeBtn">Show Solution</button>
+      <div class="py-4">
+        <pre class="line-numbers bg-dark text-white">
+          <code class="language-javascript d-none" id="resultCode">
+            myEmitter.setEvent(myReceiver.ping.bind(myReceiver));
+          </code>
+        </pre>
+      </div>
     </form>
   </div>
   <footer class="bg-dark text-center text-lg-start text-white fixed-bottom">
@@ -141,6 +150,10 @@
     const messages = input.split(",");
 
     $('#result').text(solution(messages));
+  });
+
+  $('#showCodeBtn').on('click', function() {
+    $('#resultCode').hasClass('d-none') ? $('#resultCode').removeClass('d-none') : $('#resultCode').addClass('d-none');
   });
 </script>
 
