@@ -1,0 +1,178 @@
+<html>
+
+<head>
+  <title>Maximum Difference</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body>
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="../index.html">Algorithm Problems</a>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="../index.html">Back</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container my-4 py-4">
+    <h1 class="mt-4">Maximum Difference</h1>
+    <p>Given an array of integer eleemnts, a subsequence of this array is a set of consecutive eleements from the array (i.e: given the array v:[7, 8, -3, 5, -1], a subsequence of v is 8, -3, 5)</p>
+    
+    <p class="fw-bold">Your task is to</p>
+    <ul>
+      <li>write a function that finds a left and a right subsequence of the array that satisfy the following conditions</li>
+      <ul>
+        <li>the two subsequences are unique (they don't have shared elements)</li>
+        <li>the difference between the sum of the elements in the right subsequence and the sum of the elements in the left subsequence is maximum</li>
+      </ul>
+      <li>print the difference</li>
+    </ul>
+    
+    <p>Note tat your function will receive the following arguments:</p>
+    <ul>
+      <li class="fw-bold">v</li>
+      <ul>
+        <li>which is the array of integers</li>
+      </ul>
+    </ul>
+    
+    <p class="fw-bold">Data constraints</p>
+    <ul>
+      <li>the array has at least 2 and at most 1,000,000 numbers</li>
+      <li>all the elements in the array are integer numbers in the following range: [-1000, 1000]</li>
+    </ul>
+    
+    <p class="fw-bold">Efficiency constraints</p>
+    <ul>
+      <li>your function is expected to print the result  in less than 2 seconds</li>
+    </ul>
+
+    <p class="fw-bold">Example Input:</p>
+    <ul>
+      <li>v: 3, -5, 1, -2, 8, -2, 3, -2, 1</li>
+    </ul>
+    <p class="fw-bold">Example Output:</p>
+    <ul>
+      <li>15</li>
+    </ul>
+
+    <p class="fw-bold">Explanation</p>
+    <p>The left sequence is: -5, 1, -2 and the right sequence is: 8, -2, 3</p>
+
+    <form>
+      <div class="mb-3">
+        <label for="v" class="form-label text-primary fw-bold">V<span class="text-danger">*</span>:</label>
+        <input type="text" class="form-control" id="v" placeholder="3,-5,1,-2,8,-2,3,-2,1">
+      </div>
+      <button type="button" class="btn btn-primary" id="runBtn">Run</button>
+
+      <div class="mt-3 py-4">
+        <label for="" class="form-label text-primary fw-bold">Result:</label>
+        <p id="result"></p>
+      </div>
+
+      <button type="button" class="btn btn-success" id="showCodeBtn">Show Solution</button>
+      <div class="py-4">
+        <pre class="line-numbers bg-dark text-white">
+          <code class="language-javascript d-none" id="resultCode">
+            const solution = (v) => {
+              let max = v[1] - v[0];
+
+              //lSub, rSub will be left and right subsequence when maximum
+              let lSub = [];
+              let rSub = [];
+              
+              for (let i = 0; i < v.length - 1; i++) {
+                for (let j = i; j < v.length; j++) {
+                  //left subsquence
+                  let left = [];
+                  for (let k = i; k <= j; k++) {
+                    left.push(v[k]);
+                  }
+          
+                  //right subsquence
+                  let right = [];
+                  for (let m = j + 1; m < v.length; m++) {
+                    right.push(v[m]);
+                    const lSum = left.reduce((a, b) => a + b, 0);
+                    const rSum = right.reduce((a, b) => a + b, 0);
+                    if (rSum - lSum > max) {
+                      max = rSum - lSum;
+                      lSub = [...left];
+                      rSub = [...right];
+                    }
+                  }
+                }
+              }
+              return max;
+            }
+          </code>
+        </pre>
+      </div>
+    </form>
+  </div>
+  <footer class="bg-dark text-center text-lg-start text-white fixed-bottom">
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+      &copy; 2016 - 2022 
+      <a class="text-reset fw-bold" href="https://luisjin-portfolio.netlify.app/">Unbreakablery</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+  integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+<script>
+  const solution = (v) => {
+    let max = v[1] - v[0];
+    let lSub = [];
+    let rSub = [];
+    for (let i = 0; i < v.length - 1; i++) {
+      for (let j = i; j < v.length; j++) {
+        //left subsquence
+        let left = [];
+        for (let k = i; k <= j; k++) {
+          left.push(v[k]);
+        }
+
+        //right subsquence
+        let right = [];
+        for (let m = j + 1; m < v.length; m++) {
+          right.push(v[m]);
+          const lSum = left.reduce((a, b) => a + b, 0);
+          const rSum = right.reduce((a, b) => a + b, 0);
+          if (rSum - lSum > max) {
+            max = rSum - lSum;
+            lSub = [...left];
+            rSub = [...right];
+          }
+        }
+      }
+    }
+    return max;
+  }
+
+  $('#runBtn').on('click', function() {
+    let input = $('#v').val();
+    if (!input) {
+      alert("Please input array!");
+      $('#result').text("");
+      return;
+    }
+
+    let v = input.split(",").map(a => parseInt(a));
+    
+    $('#result').text(solution(v));
+  });
+
+  $('#showCodeBtn').on('click', function() {
+    $('#resultCode').hasClass('d-none') ? $('#resultCode').removeClass('d-none') : $('#resultCode').addClass('d-none');
+  });
+</script>
+
+</html>
